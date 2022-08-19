@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import FullCalendar from "@fullcalendar/react";
+import dayGridPlugin from "@fullcalendar/daygrid";
+
+import "./App.css";
+import { useEvents } from "./hooks/useEvents";
 
 function App() {
+  const { loading, events } = useEvents();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="container-fluid pt-3">
+      <div className="row justify-content-center">
+        <div className="col-md-10">
+          {loading ? (
+            "cargando"
+          ) : (
+            <FullCalendar plugins={[dayGridPlugin]} events={events} />
+          )}
+        </div>
+      </div>
+    </main>
   );
 }
 
