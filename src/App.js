@@ -1,57 +1,28 @@
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import esLocale from "@fullcalendar/core/locales/es";
-import bootstrap5Plugin from "@fullcalendar/bootstrap5";
+import Calendar from "./components/Calendar";
+import Spinner from "./components/Spinner";
 import { useEvents } from "./hooks/useEvents";
 
-// import "bootstrap/dist/css/bootstrap.css";
-// import "bootstrap-icons/font/bootstrap-icons.css";
+// const otherEvents = [{}];
+
 import "./styles/app.scss";
 
 function App() {
   const { loading, events } = useEvents();
 
-  // console.log(events);
-
-  const handleEventClick = (clickInfo) => {
-    clickInfo.jsEvent.preventDefault();
-
-    if (clickInfo.event.url) {
-      window.open(clickInfo.event.url, "_blank");
-    }
-  };
-
   return (
     <>
       {loading ? (
-        "cargando"
+        <Spinner />
       ) : (
-        <FullCalendar
-          plugins={[
-            interactionPlugin,
-            dayGridPlugin,
-            timeGridPlugin,
-            bootstrap5Plugin,
-          ]}
-          themeSystem={"bootstrap5"}
-          headerToolbar={{
-            left: "prev,next today",
-            center: "title",
-            right: "dayGridMonth,timeGridWeek,timeGridDay",
-          }}
-          navLinks={true}
-          editable={false}
-          dayMaxEvents={true}
-          selectable={true}
-          selectMirror={false}
-          eventClick={handleEventClick}
-          locale={esLocale}
-          // height="auto"
-          // contentHeight="auto"
-          events={events}
-        />
+        <main id="#calendar-container">
+          <div className="container-fluid">
+            <div className="row justify-content-center">
+              <div className="col-12">
+                <Calendar events={events} />
+              </div>
+            </div>
+          </div>
+        </main>
       )}
     </>
   );

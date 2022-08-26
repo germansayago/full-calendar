@@ -1,13 +1,35 @@
-html {
-  position: relative;
-  // min-height: 100vh;
+// html {
+//   position: relative;
+//   // min-height: 100vh;
+// }
+// body {
+//   // background-color: blue;
+//   padding: 16px 0;
+//   margin: 0;
+// }
+
+// .fc .fc-header-toolbar .fc-button-group .fc-button-primary {
+//   background-color: red;
+// }
+
+html,
+body {
+  // overflow: hidden; /* don't do scrollbars */
+  // font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+  font-size: 14px;
 }
 body {
-  // background-color: blue;
-  padding: 16px;
-  margin: 0;
+  padding: 16px 0;
 }
-.fc {
-  // background-color: orange;
-  margin: 0 auto;
+
+#calendar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.fc-day-today {
+  background-color: rgba($success, 0.1) !important;
 }

@@ -4,9 +4,8 @@ const fromApiResponseToEvents = (apiResponse) => {
     const events = data.map((event) => {
       return {
         //TODO: format date
-        publication_date: event.publication_date,
+        // date: event.start_date + " " + event.start_time,
         title: event.title,
-        date: event.start_date + " " + event.start_time,
         start: event.start_date + " " + event.start_time,
         end: event.end_date + " " + event.end_time,
         url: `https://destinoriocuarto.gob.ar/evento/${event.id}/${event.slug}?utm_source=calendar&utm_medium=referral`,
@@ -18,7 +17,10 @@ const fromApiResponseToEvents = (apiResponse) => {
 };
 
 export function getEvents() {
-  const apiURL = "https://admin.visitariocuarto.gob.ar/api/v1/events";
+  // const apiURL = "https://admin.visitariocuarto.gob.ar/api/v1/events";
+  // const apiURL = "http://172.17.101.212/visita/public/api/v1/events";
+  const apiURL =
+    "http://172.17.101.212/visita/public/api/v1/events?overpast=true";
   return fetch(apiURL)
     .then((res) => res.json())
     .then(fromApiResponseToEvents)
