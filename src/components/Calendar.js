@@ -1,29 +1,30 @@
-import FullCalendar from "@fullcalendar/react";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import esLocale from "@fullcalendar/core/locales/es";
+import { useEffect, useState } from 'react';
+import FullCalendar from '@fullcalendar/react';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import timeGridPlugin from '@fullcalendar/timegrid';
+import interactionPlugin from '@fullcalendar/interaction';
+import esLocale from '@fullcalendar/core/locales/es';
 
-export default function Calendar(events) {
+export default function Calendar() {
   const handleEventClick = (clickInfo) => {
     clickInfo.jsEvent.preventDefault();
     // console.log(clickInfo);
 
     if (clickInfo.event.url) {
-      window.open(clickInfo.event.url, "_blank");
+      window.open(clickInfo.event.url, '_blank');
     }
   };
-  const handleDateClick = (info) => {
-    info.jsEvent.preventDefault();
-    console.log(info.dateStr);
-  };
+  // const handleDateClick = (info) => {
+  //   info.jsEvent.preventDefault();
+  //   console.log(info.dateStr);
+  // };
   return (
     <FullCalendar
       plugins={[interactionPlugin, dayGridPlugin, timeGridPlugin]}
       headerToolbar={{
-        left: "dayGridMonth,timeGridWeek,timeGridDay",
-        center: "title",
-        right: "today prev,next",
+        left: 'dayGridMonth,timeGridWeek,timeGridDay',
+        center: 'title',
+        right: 'today prev,next'
       }}
       navLinks={true}
       editable={false}
@@ -31,7 +32,7 @@ export default function Calendar(events) {
       eventClick={handleEventClick}
       locale={esLocale}
       // contentHeight={"auto"}
-      height={"auto"}
+      height={'auto'}
       // events={events}
       events={`https://admin.visitariocuarto.gob.ar/api/v1/events`}
     />
